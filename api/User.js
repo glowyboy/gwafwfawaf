@@ -8,7 +8,7 @@ const User = require('./../models/User');
 const bcrypt = require('bcrypt');
 
 router.post('/signup',(req,res)=>{
-    let{name,email,password,dateOfBirth}=req.body;
+    let{name,email,password,dateOfBirth,IMEI}=req.body;
     name=name.trim();
     email=email.trim();
     password=password.trim();
@@ -60,6 +60,7 @@ name,
 email,
 password:hashedPassword,
 dateOfBirth,
+IMEI,
     });
 newUser.save().then(result=>{
 
@@ -97,7 +98,7 @@ res.json({
 })
 
 router.post('/signin',(req,res)=>{
-    let{email,password}=req.body;
+    let{email,password,IMEI}=req.body;
     email = email.trim();
     password = password.trim();
     if(email == "" || password == ""){
@@ -119,7 +120,9 @@ if(result){
     message: "Signin Sucessfully",
     data:data
 })
-}else{
+}
+
+else{
 
     res.json({
         status: "FAILED",

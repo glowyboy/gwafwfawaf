@@ -60,7 +60,7 @@ name,
 email,
 password:hashedPassword,
 dateOfBirth,
-IMEI,
+deviceId,
     });
 newUser.save().then(result=>{
 
